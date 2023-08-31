@@ -2,7 +2,7 @@
 
 This repository contains the force field, training scripts, simulation scripts and data described in the paper:
 
-Greener JG. Differentiable simulation to develop molecular dynamics force fields for disordered proteins, bioRxiv pending (2023)
+Greener JG. Differentiable simulation to develop molecular dynamics force fields for disordered proteins, [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.08.29.555352) (2023)
 
 Please cite the paper if you use the force field.
 The validation trajectories and explicit solvent training trajectories are on [Zenodo](https://zenodo.org/record/8298226).
@@ -32,7 +32,7 @@ For example, to run a 2 μs simulation of Ntail starting from an extended confor
 python sim.py structures/disordered/ntail.pdb GB99dms.xml traj
 ```
 This will output `traj.dcd` and `traj.chk`.
-Adding a final argument `CutoffPeriodic` means periodic boundary conditions will be used, which can be useful when simulating multiple molecules.
+Adding a final argument `CutoffPeriodic` means that periodic boundary conditions will be used, which can be useful when simulating multiple molecules.
 For example, to simulate amyloid peptide aggregation:
 ```bash
 python sim.py structures/ab_16-22/GB99dms/GB99dms_wt_1.pdb GB99dms.xml traj CutoffPeriodic
@@ -41,7 +41,7 @@ python sim.py structures/ab_16-22/GB99dms/GB99dms_wt_1.pdb GB99dms.xml traj Cuto
 ## Training
 
 Training was carried out with Julia 1.8.5, Molly commit 7ea9481, Enzyme commit 2ccf4b7 and CUDA commit 654870d42 on the `vc/atomics` branch.
-Since then a more stable setup has been found and Julia 1.9 with Molly 0.17.0 (which installs Enzyme 0.11.2 and CUDA 4.2.0) should work.
+Since then a more stable setup has been found and Julia 1.9 with Molly 0.17.0, which installs Enzyme 0.11.2 and CUDA 4.2.0, should work.
 
 The [grads.jl](https://github.com/greener-group/GB99dms/blob/main/grads.jl) script runs a simulation and calculates the gradient of the loss (based on residue-residue distance match to explicit solvent data) with respect to each of the force field parameters.
 See the file for the options.
@@ -99,6 +99,6 @@ Training was repeated 3 times and the run with the best performance on the train
 
 This repository also includes:
 - GB99dms parameters and parameter changes over training in [CSV](https://github.com/greener-group/GB99dms/blob/main/GB99dms.csv) format, and GB99dms parameters in [txt](https://github.com/greener-group/GB99dms/blob/main/GB99dms.txt) format.
-- Starting parameters in [XML](https://github.com/greener-group/GB99dms/blob/main/starting_params.xml) and [txt](https://github.com/greener-group/GB99dms/blob/main/starting_params.txt) format. [a99SB-*disp* in XML format](https://github.com/greener-group/GB99dms/blob/main/a99SB-disp.xml), i.e. the starting parameters without the GBNeck2 implicit solvent, is also available. This is not an official version of a99SB-*disp* and lacks the modified backbone O-H interaction term.
+- Starting parameters in [XML](https://github.com/greener-group/GB99dms/blob/main/starting_params.xml) and [txt](https://github.com/greener-group/GB99dms/blob/main/starting_params.txt) format. [a99SB-*disp* in XML format](https://github.com/greener-group/GB99dms/blob/main/a99SB-disp.xml), i.e. the starting parameters without the GBNeck2 implicit solvent model, is also available. This is not an official version of a99SB-*disp* and lacks the modified backbone O-H interaction term.
 - [Starting structures](https://github.com/greener-group/GB99dms/tree/main/structures) used for training and validation.
 - [Reference residue-residue distances](https://github.com/greener-group/GB99dms/tree/main/explicit_solv_distances) from explicit solvent simulations with a99SB-*disp*. [Torsions](https://github.com/greener-group/GB99dms/tree/main/explicit_solv_torsions) are also included though these were not used in the paper. 
