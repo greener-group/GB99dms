@@ -2,7 +2,7 @@
 <ForceField>
   <Info>
     <DateGenerated>2022-03-18</DateGenerated>
-    <Reference>Greener, J.G. (2023). Differentiable simulation to develop molecular dynamics force fields for disordered proteins. bioRxiv.</Reference>
+    <Reference>Greener, J.G. (2024). Differentiable simulation to develop molecular dynamics force fields for disordered proteins. Chemical Science 15, 4897-4909.</Reference>
     <Reference>Robustelli, P., Piana, S., Shaw, D.E. (2018). Developing a molecular dynamics force field for both folded and disordered protein states. Proc Natl Acad Sci USA 115 (21), E4758-E4766.</Reference>
     <Reference>Nguyen, H., Roe, D.R., Simmerling, C. (2013). Improved Generalized Born Solvent Model Parameters for Protein Simulations. J Chem Theor Comput 9 (4), 2020-2034.</Reference>
   </Info>

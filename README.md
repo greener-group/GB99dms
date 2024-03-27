@@ -2,7 +2,7 @@
 
 This repository contains the force field, training scripts, simulation scripts and data described in the paper:
 
-Greener JG. Differentiable simulation to develop molecular dynamics force fields for disordered proteins, [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.08.29.555352) (2023)
+- Greener JG. Differentiable simulation to develop molecular dynamics force fields for disordered proteins, [Chemical Science](https://pubs.rsc.org/en/content/articlelanding/2024/sc/d3sc05230c) 15, 4897-4909 (2024)
 
 Please cite the paper if you use the force field.
 The validation trajectories and explicit solvent training trajectories are on [Zenodo](https://zenodo.org/record/8298226).
