@@ -26,6 +26,8 @@ The protein parameters and implicit solvent parameters are both in the file and 
 The force field was trained with a Debye-Hückel screening parameter κ of 0.7 nm^-1, corresponding to a salt concentration of about 100 mM at 300 K.
 This can be set by passing `implicitSolventKappa=0.7/nanometer` to `forcefield.createSystem`, though it should be okay to use other values too.
 
+If you want to use a small molecule force field alongside GB99dms, GAFF is recommended though you may need to modify the 1-4 scales in the GAFF XML file to match [those in GB99dms](https://github.com/greener-group/GB99dms/blob/main/GB99dms.xml#L3789).
+
 A simulation script, used to run the validation simulations, is available at [sim.py](https://github.com/greener-group/GB99dms/blob/main/sim.py).
 For example, to run a 2 μs simulation of Ntail starting from an extended conformation:
 ```bash
@@ -37,6 +39,8 @@ For example, to simulate amyloid peptide aggregation:
 ```bash
 python sim.py structures/ab_16-22/GB99dms/GB99dms_wt_1.pdb GB99dms.xml traj CutoffPeriodic
 ```
+
+Simulations with phosphorus, for example those using phosphorylated amino acids, may lead to numerical instabilities as these parameters were not updated during training.
 
 ## Training
 
