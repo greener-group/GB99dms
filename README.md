@@ -26,8 +26,6 @@ The protein parameters and implicit solvent parameters are both in the file and 
 The force field was trained with a Debye-Hückel screening parameter κ of 0.7 nm^-1, corresponding to a salt concentration of about 100 mM at 300 K.
 This can be set by passing `implicitSolventKappa=0.7/nanometer` to `forcefield.createSystem`, though it should be okay to use other values too.
 
-If you want to use a small molecule force field alongside GB99dms, GAFF is recommended though you may need to modify the 1-4 scales in the GAFF XML file to match [those in GB99dms](https://github.com/greener-group/GB99dms/blob/main/GB99dms.xml#L3789).
-
 A simulation script, used to run the validation simulations, is available at [sim.py](https://github.com/greener-group/GB99dms/blob/main/sim.py).
 For example, to run a 2 μs simulation of Ntail starting from an extended conformation:
 ```bash
@@ -39,6 +37,12 @@ For example, to simulate amyloid peptide aggregation:
 ```bash
 python sim.py structures/ab_16-22/GB99dms/GB99dms_wt_1.pdb GB99dms.xml traj CutoffPeriodic
 ```
+
+## Issues
+
+If you want to use a small molecule force field alongside GB99dms, GAFF is recommended though you may need to modify the 1-4 scales in the GAFF XML file to match [those in GB99dms](https://github.com/greener-group/GB99dms/blob/main/GB99dms.xml#L3789). See more in [this issue](https://github.com/greener-group/GB99dms/issues/1).
+
+Improper torsions are not applied to ASP and GLU sidechain carboxylates due to an issue in atom ordering in the XML file.
 
 Simulations with phosphorus, for example those using phosphorylated amino acids, may lead to numerical instabilities as these parameters were not updated during training.
 
@@ -103,6 +107,6 @@ Training was repeated 3 times and the run with the best performance on the train
 
 This repository also includes:
 - GB99dms parameters and parameter changes over training in [CSV](https://github.com/greener-group/GB99dms/blob/main/GB99dms.csv) format, and GB99dms parameters in [txt](https://github.com/greener-group/GB99dms/blob/main/GB99dms.txt) format.
-- Starting parameters in [XML](https://github.com/greener-group/GB99dms/blob/main/starting_params.xml) and [txt](https://github.com/greener-group/GB99dms/blob/main/starting_params.txt) format. [a99SB-*disp* in XML format](https://github.com/greener-group/GB99dms/blob/main/a99SB-disp.xml), i.e. the starting parameters without the GBNeck2 implicit solvent model, is also available. This is not an official version of a99SB-*disp* and lacks the modified backbone O-H interaction term.
+- Starting parameters in [XML](https://github.com/greener-group/GB99dms/blob/main/starting_params.xml) and [txt](https://github.com/greener-group/GB99dms/blob/main/starting_params.txt) format. [a99SB-*disp* in XML format](https://github.com/greener-group/GB99dms/blob/main/a99SB-disp.xml), i.e. the starting parameters without the GBNeck2 implicit solvent model, is also available. This is not an official version of a99SB-*disp* and lacks the modified backbone O-H interaction term. It also has at least one incorrect improper torsion term (see issues above).
 - [Starting structures](https://github.com/greener-group/GB99dms/tree/main/structures) used for training and validation.
 - [Reference residue-residue distances](https://github.com/greener-group/GB99dms/tree/main/explicit_solv_distances) from explicit solvent simulations with a99SB-*disp*. [Torsions](https://github.com/greener-group/GB99dms/tree/main/explicit_solv_torsions) are also included though these were not used in the paper. 
